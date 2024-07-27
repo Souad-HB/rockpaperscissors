@@ -1,5 +1,5 @@
 let keepPlaying = true;
-
+let gameRound = 0;
 statObjects = {
     rock: 0,
     paper: 0,
@@ -59,7 +59,6 @@ return;
 }
 
 while (keepPlaying) {
-    let gameRound = 0;
     gameOn ();
     gameRound += 1;
     keepPlaying = window.confirm("Do you want to play again?");
