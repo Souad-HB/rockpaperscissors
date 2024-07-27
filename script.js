@@ -24,7 +24,7 @@ const gameOn = function() {
         while (userChoice != "rock" && userChoice != "paper" && userChoice != "scissors") {
             userChoice = window.prompt("Invalid choice. Please try again. Enter either rock, paper or scissors");
         }
-        console.log("Invalid choice. Please try again.");}
+        window.alert("Invalid choice. Please try again.");}
 
     if (userChoice == "rock") {
         statObjects.rock += 1;
@@ -36,23 +36,22 @@ const gameOn = function() {
         statObjects.scissors += 1;
     }
 
-    //logging user choice
-    console.log(`Your choice was ${userChoice}`); 
+
     //logging computer choice
     let computerChoice = options[Math.floor(Math.random() * options.length)]; 
     //comparing both results
-    console.log(`The computer chose ${computerChoice}`);
+    window.alert(`The computer chose ${computerChoice}`);
     if ((userChoice == "rock" && computerChoice === "scissors") || (userChoice === "paper" && computerChoice === "rock") || (userChoice === "scissors" && computerChoice === "paper")) {
-        resultObjects.win += 1;
-        console.log("You win!");
+        resultObjects.win++;
+        window.alert("You win!");
     }
     else if (userChoice == computerChoice) {
-        resultObjects.draw += 1;
-        console.log("It's a draw!");
+        resultObjects.draw++ ;
+        window.alert("It's a draw!");
     }
     else {
         resultObjects.lose += 1;
-        console.log("You lose!");
+        window.alert("You lose!");
     }
     
 return;
@@ -68,6 +67,6 @@ const letsPlay = function() {
 };
 
 letsPlay();
-console.log(`Your selections were as follows: Rock: ${statObjects.rock}, Paper: ${statObjects.paper}, Scissors: ${statObjects.scissors}`);
-console.log(`The results are as follows: Wins: ${resultObjects.win}, Losses: ${resultObjects.lose}, Draws: ${resultObjects.draw}`);
-console.log(`You played ${gameRound} round(s).`);
+window.alert(`Rock: ${statObjects.rock}, Paper: ${statObjects.paper}, Scissors: ${statObjects.scissors},
+Wins: ${resultObjects.win}, Losses: ${resultObjects.lose}, Draws: ${resultObjects.draw},
+You played ${gameRound} round(s).`);
