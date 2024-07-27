@@ -1,5 +1,5 @@
 let keepPlaying = true;
-
+let gameRound = 0;
 statObjects = {
     rock: 0,
     paper: 0,
@@ -54,13 +54,11 @@ const gameOn = function() {
         resultObjects.lose += 1;
         console.log("You lose!");
     }
-    //adding user choice to the choices array for safekeeping
     
 return;
 }
 
 while (keepPlaying) {
-    const gameRound = 0;
     gameOn ();
     gameRound += 1;
     keepPlaying = window.confirm("Do you want to play again?");
