@@ -16,24 +16,30 @@ const gameOn = function() {
     let options = ["rock", "paper", "scissors"];
     
     let userChoice = window.prompt("Enter either rock, paper or scissors"); 
+    if (!userChoice) {
+        return;
+      }
+    // if (userChoice != "rock" && userChoice != "paper" && userChoice != "scissors") {
+    //     window.alert("Invalid choice. Please try again.");
 
-    if (userChoice != "rock" && userChoice != "paper" && userChoice != "scissors") {
-        console.log("Invalid choice. Please try again.");
 
-
-        while (userChoice != "rock" && userChoice != "paper" && userChoice != "scissors") {
-            userChoice = window.prompt("Invalid choice. Please try again. Enter either rock, paper or scissors");
-        }
-        window.alert("Invalid choice. Please try again.");}
+    //     while (userChoice != "rock" && userChoice != "paper" && userChoice != "scissors") {
+    //         userChoice = window.prompt("Invalid choice. Please try again. Enter either rock, paper or scissors");
+    //     }
+    //     window.alert("Invalid choice. Please try again.");}
 
     if (userChoice == "rock") {
         statObjects.rock += 1;
     }
-    if (userChoice == "paper") {
+    else if (userChoice == "paper") {
         statObjects.paper += 1;
     }
-    if (userChoice == "scissors") {
+    else if (userChoice == "scissors") {
         statObjects.scissors += 1;
+    }
+    else
+    { window.alert("Invalid choice. Please try again.");
+
     }
 
 
