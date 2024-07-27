@@ -1,5 +1,5 @@
 let keepPlaying = true;
-let gameRound = 0;
+
 statObjects = {
     rock: 0,
     paper: 0,
@@ -12,7 +12,7 @@ resultObjects = {
 };
 
 const gameOn = function() {
-
+    
     let options = ["rock", "paper", "scissors"];
     
     let userChoice = window.prompt("Enter either rock, paper or scissors"); 
@@ -57,12 +57,17 @@ const gameOn = function() {
     
 return;
 }
+let gameRound = 0;
+const letsPlay = function() {
+    while (keepPlaying) {
+        gameOn ();
+        gameRound += 1;
+        keepPlaying = window.confirm("Do you want to play again?");
+    }
+    return;
+};
 
-while (keepPlaying) {
-    gameOn ();
-    gameRound += 1;
-    keepPlaying = window.confirm("Do you want to play again?");
-}
+letsPlay();
 console.log(`Your selections were as follows: Rock: ${statObjects.rock}, Paper: ${statObjects.paper}, Scissors: ${statObjects.scissors}`);
 console.log(`The results are as follows: Wins: ${resultObjects.win}, Losses: ${resultObjects.lose}, Draws: ${resultObjects.draw}`);
 console.log(`You played ${gameRound} round(s).`);
