@@ -60,7 +60,7 @@ return;
 }
 
 while (keepPlaying) {
-    const gameRound = 0;
+    let gameRound = 0;
     gameOn ();
     gameRound += 1;
     keepPlaying = window.confirm("Do you want to play again?");
