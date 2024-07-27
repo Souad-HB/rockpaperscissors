@@ -1,78 +1,63 @@
-let keepPlaying = true;
+const gameOn = function () {
 
-statObjects = {
-    rock: 0,
-    paper: 0,
-    scissors: 0
-};
-resultObjects = {
-    win: 0,
-    lose: 0,
-    draw: 0
-};
+    let keepPlaying = true;
+    let options = ['R', 'P', 'S'];
+    statObjects = {
+        winsAndLosses: {
+            wins: 0,
+            losses: 0,
+            ties: 0
+        },
+        gameRound: 0,
+        chosenChoices: {
+            rock: 0,
+            paper: 0,
+            scissors: 0
+        }
+    };
 
-const gameOn = function() {
+while (keepPlaying) {
+    let userChoice = prompt("Enter R, P, or S to play!");
     
-    let options = ["rock", "paper", "scissors"];
-    
-    let userChoice = window.prompt("Enter either rock, paper or scissors"); 
     if (!userChoice) {
         return;
-      }
-    // if (userChoice != "rock" && userChoice != "paper" && userChoice != "scissors") {
-    //     window.alert("Invalid choice. Please try again.");
-
-
-    //     while (userChoice != "rock" && userChoice != "paper" && userChoice != "scissors") {
-    //         userChoice = window.prompt("Invalid choice. Please try again. Enter either rock, paper or scissors");
-    //     }
-    //     window.alert("Invalid choice. Please try again.");}
-
-    if (userChoice == "rock") {
-        statObjects.rock += 1;
     }
-    else if (userChoice == "paper") {
-        statObjects.paper += 1;
+    userChoice = userChoice.toUpperCase();
+    if (!options.includes(userChoice)) {
+        window.alert("Please enter a valid choice");
     }
-    else if (userChoice == "scissors") {
-        statObjects.scissors += 1;
-    }
-    else
-    { window.alert("Invalid choice. Please try again.");
-
-    }
-
-
-    //logging computer choice
-    let computerChoice = options[Math.floor(Math.random() * options.length)]; 
-    //comparing both results
-    window.alert(`The computer chose ${computerChoice}`);
-    if ((userChoice == "rock" && computerChoice === "scissors") || (userChoice === "paper" && computerChoice === "rock") || (userChoice === "scissors" && computerChoice === "paper")) {
-        resultObjects.win++;
-        window.alert("You win!");
-    }
-    else if (userChoice == computerChoice) {
-        resultObjects.draw++ ;
-        window.alert("It's a draw!");
-    }
-    else {
-        resultObjects.lose += 1;
-        window.alert("You lose!");
-    }
+    else 
+    {
+        if (userChoice === 'R') {
+        statObjects.chosenChoices.rock++;
+         }
+        else if (userChoice === 'S') {
+        statObjects.chosenChoices.scissors++;
+         }
+        else {
+        statObjects.chosenChoices.paper++;
+         }
     
-return;
-}
-let gameRound = 0;
-const letsPlay = function() {
-    while (keepPlaying) {
-        gameOn ();
-        gameRound += 1;
-        keepPlaying = window.confirm("Do you want to play again?");
-    }
-    return;
-};
+    let computerChoice = options[Math.floor(Math.random() * options.length)];
+    window.alert(`The computer chose ${computerChoice}`);
 
-letsPlay();
-window.alert(`Rock: ${statObjects.rock}, Paper: ${statObjects.paper}, Scissors: ${statObjects.scissors},
-Wins: ${resultObjects.win}, Losses: ${resultObjects.lose}, Draws: ${resultObjects.draw},
-You played ${gameRound} round(s).`);
+        if (userChoice === computerChoice){
+        window.alert ("It's a tie!");}
+        else if ((userChoice === 'R' && computerChoice === 'S') || 
+                (userChoice === 'S' && computerChoice === 'P') || 
+                (userChoice === 'P' && computerChoice === 'R')) {
+            window.alert("You win!");
+            statObjects.winsAndLosses.wins++;
+        }
+        else {
+            window.alert("You lose!");
+            statObjects.winsAndLosses.losses++; 
+        }
+        statObjects.gameRound++;
+        keepPlaying = confirm("Do you want to keep playing?");
+    }
+} 
+window.alert(`You have ${statObjects.winsAndLosses.wins} wins, ${statObjects.winsAndLosses.losses} losses, and ${statObjects.winsAndLosses.ties} ties. You chose rock ${statObjects.chosenChoices.rock} times, paper ${statObjects.chosenChoices.paper} times, and scissors ${statObjects.chosenChoices.scissors} times. You played ${statObjects.gameRound} rounds.`);
+}
+
+gameOn();
